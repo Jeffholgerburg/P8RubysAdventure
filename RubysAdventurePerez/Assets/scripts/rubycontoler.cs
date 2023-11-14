@@ -15,9 +15,10 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = 
-        Vector2 position = transform.position;
-        position.x = position.x + 0.1f;
+       Vector2 position = transform.position;
+        position.x = position.x = 0.1f;
         transform.position = position;
+
+
     }
 }
