@@ -6,12 +6,12 @@ public class HealthCollectable : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other)
     {
-        RubyController controller = other.GetComponent<RubyController>();
+        rubycontoler controller = other.GetComponent<rubycontoler>();
         if (controller != null)
 
-            if(controller.heath < controller.maxHeath)
+            if(controller.health < controller.maxHealth)
 
-            controller.ChangeHeath(1);
+            controller.ChangeHealth(1);
             Destroy(gameObject);
 
     }

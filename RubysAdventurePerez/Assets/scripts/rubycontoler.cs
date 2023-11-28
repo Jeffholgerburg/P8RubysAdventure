@@ -6,13 +6,17 @@ using UnityEngine.UIElements;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 
-public class NewBehaviourScript : MonoBehaviour
+public class rubycontoler : MonoBehaviour
 {
     public int maxHealth = 5;
 
     public int currentHealth;
-    public float timeInvincible
-    public int health { get { return currentHeath; } ]
+    public float timeInvincible;
+    public int health { get { return currentHealth; } }
+
+    bool isInvincible;
+    float invincibleTimer;
+
 
     Rigidbody2D rigidbody2d;
     float horizontal;
@@ -31,17 +35,41 @@ public class NewBehaviourScript : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        void FixedUpdate();
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+            {
+                isInvincible = false;
+            }
+        }
 
+
+    }
+    void FixedUpdate()
+    {
         Vector2 position = rigidbody2d.position;
         position.x = position.x + 3.0f * horizontal * Time.deltaTime;
         position.y = position.y + 3.0f * vertical * Time.deltaTime; ;
 
         rigidbody2d.MovePosition(position);
     }
-    void ChangeHealth(int amount)
+    public void ChangeHealth(int amount)
+    {
 
-       currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        if (isInvincible)
+
+            return;
+
+
+        isInvincible = true;
+        
+
+
+
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
 
+
+    }
 }
