@@ -59,7 +59,7 @@ public class rubycontoler : MonoBehaviour
             {
                 isInvincible = false;
             }
-            if(Inmput.GetKeyDown(KeyCode.C))
+            if(Imput.GetKeyDown(KeyCode.C))
             {
                 launch();
             }
@@ -98,7 +98,7 @@ public class rubycontoler : MonoBehaviour
     {
         GameObject ProjectTileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
-        ProjectilePrefab projectile = projectileObject.GetComponent<ProjectTile>();
+        projectilePrefab projectile = projectileObject.GetComponent<ProjectTile>();
         projectile.Launch(LookDirection, 300);
 
         animator.SetTrigger("Launch");

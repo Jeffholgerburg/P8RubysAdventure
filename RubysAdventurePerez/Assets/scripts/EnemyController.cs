@@ -10,7 +10,8 @@ public class EnemyController : MonoBehaviour
 
     Rigidbody2D rigidbody2;
 
-    bool broken;
+    bool broken = true;
+
     float timer;
     int direction = 1;
 
@@ -73,5 +74,6 @@ public class EnemyController : MonoBehaviour
     {
         broken = false;
         Rigidbody2D.simulated = false;
+        animator.SetTrigger("fixed");
     }
 }

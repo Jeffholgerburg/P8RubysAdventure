@@ -15,27 +15,26 @@ public class ProjectTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.magitude > 1000.0f);
+        if (transform.position.magnitude > 1000.0f);
         {
             Destroy(gameObject);
         }
     }
 
-    public void launch(Vector2 direction, float force);
+    public void Launch(Vector2 direction, float force);
+    private void OnCollisionEnter(Collision collision)
     {
-       rigidbody2d.AddForce(direction* force);
+        
     }
-    
-    void OnCollisionEnter2D(Collision collision)
-{
-     EnemyController e = other.collider.GetComponent<EnemyController>();
+
+    EnemyController e = other.collider.GetComponent<EnemyController>();
     if (e != null)
     {
         e.Fix();
     }
-      
-    Destroy(gameObject);
-}
 
-}
+
+
+
+
 
