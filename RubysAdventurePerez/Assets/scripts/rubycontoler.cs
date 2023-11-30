@@ -26,12 +26,18 @@ public class rubycontoler : MonoBehaviour
 
     Animator animator;
     Vector2 LookDirection = new Vector2(1, 0);
+    public AudioClip throwsound;
+    public AudioClip hitsound2;
+
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
         currentHealth = 1;
     }
 
@@ -63,6 +69,24 @@ public class rubycontoler : MonoBehaviour
             {
                 launch();
             }
+
+            if(Imput.GetKeyDown(KeyCode.X))
+            {
+                RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, LookDirection, 1.5f, layerMask.GetMask("NPC"));
+                if(hit.collider != null)
+                {
+                    NonPlayerCharcter charcter = hit.collider.GetComponent<NonPlayerCharcter>();
+                    if(charcter != null)
+                    {
+                        charcter.DisplayDiaLog();
+                    }
+
+              
+                        
+                  
+                    
+                }
+            }
         }
 
 
@@ -85,12 +109,14 @@ public class rubycontoler : MonoBehaviour
 
 
         isInvincible = true;
+        invincibleTimer = timeInvincible;
+        PlaySound(hitsound);
         
 
 
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth + "/" + maxHealth);
+        UIHealthBar.instance(currentHealth/(float)maxHealth);
 
 
     }
@@ -102,5 +128,11 @@ public class rubycontoler : MonoBehaviour
         projectile.Launch(LookDirection, 300);
 
         animator.SetTrigger("Launch");
+        PlaySound(throwsound);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

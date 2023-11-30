@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     public bool vertical;
     public float changeTime = 3.0f;
 
+    public ParticleSystem smokeffect;
+
     Rigidbody2D rigidbody2;
 
     bool broken = true;
@@ -75,5 +77,6 @@ public class EnemyController : MonoBehaviour
         broken = false;
         Rigidbody2D.simulated = false;
         animator.SetTrigger("fixed");
+        smokeffect.Stop();
     }
 }
