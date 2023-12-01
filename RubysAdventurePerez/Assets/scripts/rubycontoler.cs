@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -49,14 +50,14 @@ public class rubycontoler : MonoBehaviour
 
         Vector2 move = new Vector2(horizontal, vertical);
 
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0f ))
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0f))
         {
             LookDirection.Set(move.x, move.y);
             LookDirection.Normalize();
         }
         animator.SetFloat("Look X", LookDirection.x);
         animator.SetFloat("Look y", LookDirection.y);
-        animator.SetFloat ("Speed" , move.magnitude);
+        animator.SetFloat("Speed", move.magnitude);
 
         if (isInvincible)
         {
@@ -65,32 +66,32 @@ public class rubycontoler : MonoBehaviour
             {
                 isInvincible = false;
             }
-            if(Imput.GetKeyDown(KeyCode.C))
+            if(Input.GetKeyDown(KeyCode.C))
             {
                 launch();
             }
 
-            if(Imput.GetKeyDown(KeyCode.X))
+            if(Input.GetKeyDown(KeyCode.X))
             {
                 RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, LookDirection, 1.5f, layerMask.GetMask("NPC"));
-                if(hit.collider != null)
+                if (hit.collider != null)
                 {
                     NonPlayerCharcter charcter = hit.collider.GetComponent<NonPlayerCharcter>();
-                    if(charcter != null)
+                    if (charcter != null)
                     {
                         charcter.DisplayDiaLog();
                     }
 
-              
-                        
-                  
-                    
+
+
+
+
                 }
             }
         }
 
-
     }
+    
     void FixedUpdate()
     {
         Vector2 position = rigidbody2d.position;
@@ -110,13 +111,14 @@ public class rubycontoler : MonoBehaviour
 
         isInvincible = true;
         invincibleTimer = timeInvincible;
-        PlaySound(hitsound);
-        
+        PlaySound(hitsound2);
+
 
 
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        UIHealthBar.instance(currentHealth/(float)maxHealth);
+
+        UIHealthBar.instance.SetValue(currentHealth/(float)maxHealth);
 
 
     }
@@ -124,10 +126,10 @@ public class rubycontoler : MonoBehaviour
     {
         GameObject ProjectTileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
-        projectilePrefab projectile = projectileObject.GetComponent<ProjectTile>();
+        projectile = ProjectTileObject.GetComponent<ProjectTile>();
         projectile.Launch(LookDirection, 300);
 
-        animator.SetTrigger("Launch");
+        animator.SetTrigger("launch");
         PlaySound(throwsound);
     }
 

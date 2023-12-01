@@ -75,8 +75,9 @@ public class EnemyController : MonoBehaviour
     public void Fix()
     {
         broken = false;
-        Rigidbody2D.simulated = false;
-        animator.SetTrigger("fixed");
+        rigidbody2.simulated = false;
+        animator.SetTrigger("Fixed");
+
         smokeffect.Stop();
     }
 }

@@ -27,6 +27,6 @@ public class UIHealthBar : MonoBehaviour
 
      public void SetValue(float value)
     {
-        mask.rectTransform.SetsizeWidthCurrentAnchors(RectTransform.Axis.Horzontal, orignialSize * value);
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, orignialSize * value);
     }
 }

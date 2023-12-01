@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NonPlayerCharcter: MonoBehaviour
+{ 
     public float displaytime = 4.0f;
     public GameObject dialogBox;
 float timerDispalay;
 
-{
+
     // Start is called before the first frame update
     void Start()
     {
-        diaLogBox.SetActive(false);
+        dialogBox.SetActive(false);
         timerDispalay = -1.0f;
     }
 
@@ -23,7 +24,7 @@ float timerDispalay;
             timerDispalay -= Time.deltaTime;
             if (timerDispalay < 0 )
             {
-                diaLogBox.SetActive(false );
+                dialogBox.SetActive(false );
             }
         }
     }
