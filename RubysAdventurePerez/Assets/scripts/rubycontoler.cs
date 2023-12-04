@@ -68,12 +68,12 @@ public class rubycontoler : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.C))
             {
-                launch();
+                Launch();
             }
 
             if(Input.GetKeyDown(KeyCode.X))
             {
-                RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, LookDirection, 1.5f, layerMask.GetMask("NPC"));
+                RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, LookDirection, 1.5f, LayerMask.GetMask("NPC"));
                 if (hit.collider != null)
                 {
                     NonPlayerCharcter charcter = hit.collider.GetComponent<NonPlayerCharcter>();
@@ -122,19 +122,23 @@ public class rubycontoler : MonoBehaviour
 
 
     }
-    void launch ()
+    void Launch ()
     {
         GameObject ProjectTileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
-        projectile = ProjectTileObject.GetComponent<ProjectTile>();
+        Projectile projectile= ProjectTileObject.GetComponent<Projectile>();
         projectile.Launch(LookDirection, 300);
 
-        animator.SetTrigger("launch");
+        animator.SetTrigger("Launch");
         PlaySound(throwsound);
     }
 
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
+    }
+
+    private void OnDestroy()
+    {
     }
 }

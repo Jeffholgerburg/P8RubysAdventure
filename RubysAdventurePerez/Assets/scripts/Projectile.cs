@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class ProjectTile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     // Start is called before the first frame update
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+    }
+    public void Launch (Vector2 direction, float force)
+    {
+        rigidbody2d.AddForce(direction * force);
     }
 
     // Update is called once per frame
@@ -28,6 +32,7 @@ public class ProjectTile : MonoBehaviour
         {
             e.Fix();
         }
+        Destroy(gameObject);
     }
           
 }
