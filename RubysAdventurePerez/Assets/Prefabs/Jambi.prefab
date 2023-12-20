@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3506209133520580864}
   - component: {fileID: 1801134577415057694}
   - component: {fileID: 240437726522602701}
+  - component: {fileID: 2004178527220180235}
   - component: {fileID: 8122507264537102810}
   m_Layer: 11
   m_Name: Jambi
@@ -107,6 +108,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2004178527220180235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098419149527031469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb6a94be2fde2246bf169d4e61c295a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displaytime: 4
+  dialogBox: {fileID: 0}
 --- !u!61 &8122507264537102810
 BoxCollider2D:
   m_ObjectHideFlags: 0

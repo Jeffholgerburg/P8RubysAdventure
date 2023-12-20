@@ -196,3 +196,6 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   timeInvincible: 2
+  projectilePrefab: {fileID: 4876672053031712850, guid: 5efa9b95f8e340e4aa7edd1068523256, type: 3}
+  throwsound: {fileID: 0}
+  hitsound2: {fileID: 0}
